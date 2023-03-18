@@ -12,9 +12,8 @@ public class Transforms2D extends JPanel {
             int whichTransform = transformSelect.getSelectedIndex();
 
             // TODO Apply transforms here, depending on the value of whichTransform!
-            if (whichTransform == 0) {
-                g2.drawImage(pic, -200, -150, null);
-            } else {
+            if (whichTransform == 0) g2.drawImage(pic, -200, -150, null);
+            else {
                 int sides = 18;
                 int radius = 150;
                 int x[] = new int[sides];
