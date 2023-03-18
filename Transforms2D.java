@@ -7,25 +7,61 @@ public class Transforms2D extends JPanel {
     private class Display extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D)g;
-            g2.translate(300, 300);  // Moves (0,0) to the center of the display.
+            Graphics2D g2 = (Graphics2D) g;
+            g2.translate(300, 300); // Moves (0,0) to the center of the display.
             int whichTransform = transformSelect.getSelectedIndex();
 
-            // TODO Apply transforms here, depending on the value of whichTransform!
-            if (whichTransform == 0) g2.drawImage(pic, -200, -150, null);
-            else {
-                int sides = 18;
-                int radius = 150;
-                int x[] = new int[sides];
-                int y[] = new int[sides];
-                for (int i = 0; i < sides; i++) {
-                    x[i] = (int) (radius * Math.cos(i * 2 * Math.PI / sides));
-                    y[i] = (int) (radius * Math.sin(i * 2 * Math.PI / sides));
-                }
-                g2.setColor(Color.BLUE);
-                g2.fillPolygon(x, y, sides);
+            switch (whichTransform) {
+                case 1:
+                    g2.scale(0.5, 0.5);
+                    break;
+                case 2:
+                    g2.rotate(Math.toRadians(45));
+                    break;
+                case 3:
+                    g2.rotate(Math.toRadians(90));
+                    break;
+                case 4:
+                    g2.shear(0,0.5);
+                    break;
+                case 5:
+                    g2.translate(0,-200);
+                    g2.scale(1.5,0.5);
+                    break;
+                case 6:
+                    g2.shear(0.5,0);
+                    g2.rotate(Math.toRadians(45));
+                    break;
+                case 7:
+                    g2.rotate(Math.toRadians(270));
+                    break;
+                case 8:
+                    g2.translate(-80,80);
+                    g2.rotate(Math.toRadians(30));
+                    g2.scale(1.5,0.5);
+                    break;
+                case 9:
+                    g2.translate(150,0);
+                    g2.shear(0,0.5);
+                    g2.rotate(Math.toRadians(180));
+                    break;
+                default:
+                    break;
             }
-        }
+
+            // Draw the image
+            int sides = 18;
+            int radius = 150;
+            int x[] = new int[sides];
+            int y[] = new int[sides];
+            for (int i = 0; i < sides; i++) {
+                x[i] = (int) (radius * Math.cos(i * 2 * Math.PI / sides));
+                y[i] = (int) (radius * Math.sin(i * 2 * Math.PI / sides));
+            }
+            g2.setColor(Color.BLUE);
+            g2.fillPolygon(x, y, sides);
+
+                   }
     }
 
     private Display display;
